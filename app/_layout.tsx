@@ -6,6 +6,9 @@ import {
   FrankRuhlLibre_800ExtraBold,
   FrankRuhlLibre_500Medium,
  } from "@expo-google-fonts/frank-ruhl-libre";
+ import { GestureHandlerRootView } from "react-native-gesture-handler";
+ import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+
 
  import { useEffect } from "react";
  import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
@@ -35,9 +38,13 @@ import { useColorScheme } from "react-native";
 
   return (
   <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-    </Stack>
-  </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <BottomSheetModalProvider>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+        </Stack>
+      </BottomSheetModalProvider>
+      </GestureHandlerRootView>
+    </ThemeProvider>
   );
 }
